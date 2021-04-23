@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/Loginstyles.css' %}">
+    <title>Login</title>
+    <style>
+    form > input[type=date], select{
+    border: none;
+    outline: none;
+    background: none;
+    color: black;
+    font-size: 18px;
+    float: left;
+    margin: px;
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 8px 0;
+    background: #c0d2ff;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+
+}
+
+    </style>
+</head>
+<body>
+    <div class="login_box">
+        <h1 style="text-align: center;">Login</h1>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+        <!-- <div class="textbox1" id="country"> -->
+          <h5>Are you manage or user </h5>
+            <!-- <select id="country" name="country" >
+                <option value="manage" >Manager</option>
+                <option value="uesr">User</option>
+            </select> -->{{ form_login_f.job }}
+            <!-- </div> -->
+        <div class="textbox">
+            
+            <!-- <i class="fa fa-user" aria-hidden="true"></i> -->
+            <!-- <h5>Are you manage or user </h5>
+            <select id="country" name="country" >
+                <option value="manage" >Manager</option>
+                <option value="uesr">User</option> -->
+            <!-- </select> -->
+            
+            <!-- <input type="text" placeholder="Username" name="" value=""> -->{{ form_login_f.user_name }}
+        </div>
+        <div class="textbox">
+            <!-- <li class="fa fa-lock" aria-hidden="true"></li> -->
+            <!-- <input type="password" placeholder="Password" name="" value=""> -->{{ form_login_f.password }}
+        
+        </div>
+        <input class="btn" type="submit" value="Sign in">
+    </form>
+
+        
+    </div>
+</body>
+</html>

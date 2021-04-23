@@ -1,0 +1,79 @@
+
+{% load static %}
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="{% static 'css/tablestyle.css' %}">
+
+    <title>table/</title>
+</head>
+<body style="background-color: aliceblue;">
+        <header id="header">
+                <div class="container">
+            
+                  <div id="logo" class="pull-left">
+                    <a href="#hero"><h1>CackBank</h1></a>
+                  </div>
+            
+                  <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                      <li class="menu-active"><a href="{% url 'new_transfers' %}">الصفحة الرئيسية</a></li>
+                      <li><a href="#about">العمليات</a></li>
+                      <li><a href="{% url 'list'%}">الحوالات النشطه</a></li>
+                      <li><a href="{% url 'listbr'%}"> الفروع</a></li>
+                    </ul>
+                  </nav><!-- #nav-menu-container -->
+                </div>
+              </header><!-- #header -->
+
+              <div style="clear: both;"></div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+
+    <table id="customers">
+      <thead>
+        <tr>
+          <th>رقم الحواله</th>
+         <th>اسم المرسل</th>
+         <th>رقم المرسل</th>
+         <th>المبلغ</th>
+         <th>العمله</th>
+         <th>اسم المستلم</th>
+         <th>رقم المستلم</th>
+         <th>نوع بطاقه المستلم</th>
+         
+         <!-- <th></th>
+         <th></th> -->
+        
+        </thead>
+        <tbody>
+        {% for i in qury %}
+        </tr>
+          
+          <td>{{ i.id_transfer }}</td>
+          <td>{{ i.name_send }}</td>
+          <td>{{ i.phon_send }}</td>
+      
+          <td>{{ i.amount }}</td>
+          <td>{{ i.courrency }}</td>
+        
+        
+          <td>{{ i.name_recipient }}</td>
+        
+          <td>{{ i.phon_recipient }}</td>
+        
+        
+          <td>{{ i.recipient_card_type }}</td>
+        
+        
+      </tr>
+      {% endfor %}
+        </tbody>
+      </table>
+     
+</body>
+</html>

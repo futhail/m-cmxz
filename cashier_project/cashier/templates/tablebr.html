@@ -1,0 +1,70 @@
+{% load static %}
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="{% static 'css/tablestyle.css' %}">
+    <title>table/</title>
+</head>
+<body>
+        <header id="header">
+                <div class="container">
+            
+                  <div id="logo" class="pull-left">
+                    <a href="#hero"><h1>CackBank</h1></a>
+                  </div>
+            
+                  <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                      <li class="menu-active"><a href="{% url 'new_transfers' %}">الصفحة الرئيسية</a></li>
+                      <li><a href="{% url  'recipient_disac' %}">الحوالات غير النشطه</a></li>
+                      <li><a href="{% url 'list'%}">الحوالات النشطه</a></li>
+                      <li><a href="{% url 'listbr'%}"> الفروع</a></li>
+  
+ 
+                      </li>
+                      <!-- <li><a href="#contact">Contact Us</a></li> -->
+                    </ul>
+                  </nav><!-- #nav-menu-container -->
+                </div>
+              </header><!-- #header -->
+
+              <div style="clear: both;"></div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+
+    <table id="customers">
+      <thead>
+        <tr>
+          <th>رقم الفرع</th>
+         <th>اسم الفرع</th>
+         <th>المحافظه</th>
+         <th>المديريه</th>
+         <th>تاريخ انشاء الفرع</th>
+
+         
+         <!-- <th></th>
+         <th></th> -->
+        </tr>
+        </thead>
+        <tbody>
+        {% for b in branche %}
+        <tr>
+          <td>{{ b.branche_id }}</td>
+          <td>{{ b.name_branche }}</td>
+          <td>{{ b.conservative }}</td>
+      
+          <td>{{ b.directorated }}</td>
+      
+          <td>{{ b.date_created }}</td>
+
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    
+</body>
+</html>

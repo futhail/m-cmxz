@@ -1,0 +1,118 @@
+{% load static %}
+<!doctype html>
+<html dir="rtl">
+    <head>
+            
+        <!-- <link rel="stylesheet" href="css/signstyle.css"> -->
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/signstyle.css' %}">
+        <link rel="stylesheet" href="{% static 'css/tablestyle.css' %}">
+        <title>sign up</title>
+            <link rel="icon" href="image/logo.png">
+<style>
+ form > input{
+    width: 80%;
+    position: relative;
+    right: 15px;
+    height: 33px;
+    margin:2% 0 0 10%;
+    border-style: none;
+    border-radius: 10px;
+    margin-bottom:7%;
+    border: 1px solid rgb(14, 132, 243);
+}
+form > input[type=submit], select{
+    width: 30%;
+    height: 50px;
+    margin:2% 0 0 10%;
+    border-style: none;
+    border-radius: 10px;
+    margin-bottom:7%;
+    background: rgb(113, 224, 206);
+}
+body{ 
+background: #c3c3c3;}
+            
+            
+            </style>
+    </head>
+    <body>
+        <header id="header">
+            <div class="container">
+        
+              <div id="logo" class="pull-left">
+                <a href="#hero"><h1>CackBank</h1></a>
+              </div>
+        
+              <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                  <li class="menu-active"><a href="#hero">الصفحة الرئيسية</a></li>
+                  <li><a href="#about">العمليات</a></li>
+                  <li><a href="#services">اتصل بنا</a></li>
+                  <li><a href="#portfolio">تسجيل الدخول</a></li>
+                </ul>
+              </nav><!-- #nav-menu-container -->
+            </div>
+          </header><!-- #header -->
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        <div class="block" style="padding: 10px;">
+            <form method="POST">
+                {% csrf_token %}
+               <h1> <span>أدخل رقم البطاقة  :<p></p></span></h1>{{ form_card.recipient_card_num_d }}
+                <input type="submit" class="login" value=" إستلام">  
+            </form>
+        </div> 
+                    
+        
+            
+           
+        <table id="customers" style="background: white;">
+            <thead>
+              <tr>
+                <th>رقم الحواله</th>
+               <th>اسم المرسل</th>
+               <th>رقم المرسل</th>
+               <th>المبلغ</th>
+               <th>العمله</th>
+               <th>اسم المستلم</th>
+               <th>رقم المستلم</th>
+               <th>نوع بطاقه المستلم</th>
+               
+               <!-- <th></th>
+               <th></th> -->
+              
+              </thead>
+              <tbody>
+              
+              </tr>
+                
+                <td>{{ qury.id_transfer }}</td>
+                <td>{{ qury.name_send }}</td>
+                <td>{{ qury.phon_send }}</td>
+            
+                <td>{{ qury.amount }}</td>
+                <td>{{ qury.courrency }}</td>
+              
+              
+                <td>{{ qury.name_recipient }}</td>
+              
+                <td>{{ qury.phon_recipient }}</td>
+              
+              
+                <td>{{ qury.recipient_card_type }}</td>
+              
+              
+            </tr>
+          
+              </tbody>
+            </table>
+    </body>
+</html>

@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/pagestyle.css' %}">
+<title>exam</title>
+<style>
+  form > input {
+    padding: 8px;
+    display: block;
+    border: 1px solid black;
+    width: 100%;
+    border-radius: 10px;
+    padding-top:16px!important;
+    padding-bottom:16px!important;
+    border-bottom:1px solid #ddd;
+  }
+  form > input[type=date], select{
+    padding: 8px;
+    display: block;
+    border: 1px solid black;
+    width: 100%;
+    height: 75px;
+    margin:2% 0 0 10%;
+    padding-top:16px!important;
+    padding-bottom:16px!important;
+    border-radius: 10px;
+    margin-bottom:7%;
+    background:white;
+    border-bottom:1px solid #ddd;
+    background-color: blue;
+    
+}
+
+</style>
+</head>
+
+<body >
+
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <a href="{% url 'my_account' %}"><h1>التعديل في حسابي</h1></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="{% url 'logout' %}">تسجيل الخروج</a></li>
+          <li><a href="{% url 'recipient'%}">استلام</a></li>
+          <li><a href="{% url  'recipient_disac' %}">الحوالات غير النشطه</a></li>
+          <li><a href="{% url 'login' %}">تسجيل الدخول</a></li>
+          <li><a href="{% url 'signup' %}">اضافه مستخدم للنظام</a></li>
+          <li class="menu-has-children"><a href="{% url 'password_change' %}">تغيير كلمه المرور</a>
+            <li><a href="{% url 'new_branche'%}">انشاء فرع جديد</a></li>
+
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+      <div style="clear: both;"></div>
+      <br>
+
+      <div id="tran">
+        
+      </div>
+
+<div class="bgimg w3-display-container w3-text-white">
+
+  <div class="w3-display-topleft w3-container w3-xlarge">
+      <p><button onclick="document.getElementById('menu').style.display='block'" class="w3-button w3-black"> ارسال الحوالة</button></p>
+      <p><button  class="w3-button w3-black"><a href="{% url 'recipient' %}" style="font-size: 26px;color: white; text-decoration: none;"> استلام حوالة</a></button></p>
+  </div>
+
+</div>
+
+<!-- Menu Modal -->
+<div id="menu" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom">
+    <div class="w3-container w3-black w3-display-container">
+      <span onclick="document.getElementById('menu').style.display='none'" class="w3-button w3-display-topright w3-large">x</span>
+      <h6>  .</h6>
+    </div>
+    <div class="w3-container">
+        <p></p>
+        <h2 style="background:black;width: 20%;border-radius: 10px;color: white;text-align: center; ">بيانات المرسل</h2>
+       
+       
+        <form method="POST">
+          {% csrf_token %}
+            
+          <h3>أدخل اسم المرسل:</h3>{{ form_trans.name_send }}
+          <h3>أدخل المبلغ:</h3>{{ form_trans.amount }}
+          <h3>أدخل رقم الهاتف:</h3>{{ form_trans.phon_send }}
+          <h3>العمله:</h3>{{ form_trans.courrency }}
+
+          <h2 style="background:black;width: 20%;border-radius: 10px;color: white;text-align: center; margin-top: 30px ; ">بيانات المستلم</h2>
+          <h3>أدخل اسم المستلم:</h3>{{ form_trans.name_recipient }}
+          <h3>أدخل رقم الهاتف:</h3>{{ form_trans.phon_recipient }}
+          <h3>نوع بطاقه المستلم :</h3>{{ form_trans.recipient_card_type }}
+          <button  style="text-align: center;background: black;color: white;font-size: 20px;width: 10%;border-radius: 10px; margin-top: 30px;"class="w3-button" type="submit">إرسال</button>
+        </form>
+
+        
+        
+    </div>
+  </div>
+</div>
+
+
+  </div>
+</div>
+
+
+</body>
+
+</html>
+

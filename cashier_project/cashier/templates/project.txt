@@ -1,0 +1,49 @@
+veiw
+
+def signup(request):
+    if request.method == 'POST':
+        form_sin = New_Signup(request.POST)
+        if form_sin.is_valid():
+            sign=form_sin.save()
+            return redirect('signup')
+    else:
+        form_sin = New_Signup()
+    return render(request, 'sign_up.html', {'form_sin': form_sin})
+
+###########################################################################
+
+form
+
+class New_Signup(forms.ModelForm):
+    # email = forms.CharField(max_length=250, required=True,
+    #  widget=forms.EmailInput())
+    # password = forms.CharField(max_length=100, widget=forms.PasswordInput())
+
+    class Meta:
+        model = Sign_up
+        fields = ['user_name','password','phon','conservative_user','directorated_user','branche_id_for']
+
+###########################################################################
+
+modles
+
+class Sign_up(models.Model):
+    user_name = models.CharField(max_length=200)
+    # email = models.EmailField()
+    password = models.CharField(max_length=100)
+    st_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200)
+    job = models.CharField(max_length=50,default='user')
+    phon = models.IntegerField()
+    date_job =models.DateField(auto_now=True)
+    conservative_user = models.CharField(max_length=30,choices=YEAR_IN_SCHOOL_CHOICES)
+    directorated_user = models.CharField(max_length=30)
+    branche_id_for = models.CharField(max_length=30,choices=ach,default='الرئيسي')
+
+###########################################################################
+
+url
+
+path('sign_up/',views.signup,name='signup'),
+
+

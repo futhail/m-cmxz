@@ -1,0 +1,49 @@
+
+{% load form_tags widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method='POST'>
+        <h1>qusiy and qusiy </h1>
+        {% csrf_token %}
+        {{ form_pag }}
+        {% for barch in form_pag %}
+        {{ barch.branche_id }}
+        {{ barch.name_branche}}
+        
+        {% endfor %}
+        <button type="submit">POST</button>
+    </form>
+
+    {% if form.non_field_errors %}
+<div  role="alert">
+  {% for error in form.non_field_errors %}
+  <p{% if forloop.last %}  {% endif %}>{{ error }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% for field in form %}
+<div>
+  {{ field.label_tag }}
+  {% render_field field class=field|input_class %}
+  {% for error in field.errors %}
+  <div>
+    {{ error }}
+  </div>
+  {% endfor %}
+  {% if field.help_text %}
+  <small>
+    {{ field.help_text|safe }}
+  </small>
+  {% endif %}
+</div>
+{% endfor %}
+    
+</body>
+</html>

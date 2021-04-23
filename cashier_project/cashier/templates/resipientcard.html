@@ -1,0 +1,121 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+            
+        <!-- <link rel="stylesheet" href="css/signstyle.css"> -->
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/signstyle.css' %}">
+        <link rel="stylesheet" href="{% static 'css/tablestyle.css' %}">
+        <title>sign up</title>
+            <link rel="icon" href="image/logo.png">
+<style>
+ form > input{
+    width: 80%;
+    height: 30px;
+    margin:2% 0 0 10%;
+    border-style: none;
+    border-radius: 1em;
+    margin-bottom:7%;
+    border: 1px solid rgb(14, 132, 243);
+}
+form > input[type=submit], select{
+    width: 30%;
+    height: 50px;
+    margin:2% 0 0 10%;
+    border-style: none;
+    border-radius: 10px;
+    margin-bottom:7%;
+    background: rgb(113, 224, 206);
+}
+body{ 
+background: #c3c3c3;}
+            
+            
+            </style>
+    </head>
+    <body>
+        <header id="header">
+            <div class="container">
+        
+              <div id="logo" class="pull-left">
+                <a href="#hero"><h1>CackBank</h1></a>
+              </div>
+        
+              <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                  <li class="menu-active"><a href="#hero">الصفحة الرئيسية</a></li>
+                  <li><a href="#about">العمليات</a></li>
+                  <li><a href="{% url 'list'%}">الحوالات النشطه</a></li>
+                  <li><a href="{% url 'listbr'%}"> الفروع</a></li>
+                </ul>
+              </nav><!-- #nav-menu-container -->
+            </div>
+          </header><!-- #header -->
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+
+          <div class="block">
+            <form method="POST">
+                {% csrf_token %}
+<h1 style="color: red; text-align: center;">{{ recierror }}</h1>
+                <h1 style="padding: 10px;"><span>أدخل رقم الحوالة:<p></p></span></h1>{{ recipient.pk }}
+                <input type="submit" class="login" value="بحث">  
+            </form>
+        </div> 
+
+        {% for i in mana %} 
+        <table id="customers" style="background: white;">
+            <thead>
+              <tr>
+                <th>رقم الحواله</th>
+               <th>اسم المرسل</th>
+               <th>رقم المرسل</th>
+               <th>المبلغ</th>
+               <th>العمله</th>
+               <th>اسم المستلم</th>
+               <th>رقم المستلم</th>
+               <th>نوع بطاقه المستلم</th>
+               
+               <!-- <th></th>
+               <th></th> -->
+              
+              </thead>
+              <tbody>
+              
+              </tr>
+                
+                <td>{{ i.id_transfer }}</td>
+                <td>{{ i.name_send }}</td>
+                <td>{{ i.phon_send }}</td>
+            
+                <td>{{ i.amount }}</td>
+                <td>{{ i.courrency }}</td>
+              
+              
+                <td>{{ i.name_recipient }}</td>
+              
+                <td>{{ i.phon_recipient }}</td>
+              
+              
+                <td>{{ i.recipient_card_type }}</td>
+              
+              
+            </tr>
+            
+              </tbody>
+            </table>
+            <form method="POST" action="{% url 'resipientcard' i.id_transfer %}">
+              {% csrf_token %}
+            <input type="submit" class="login"value="إستلام">
+            </form>
+            {% endfor %}
+    </body>
+</html>
